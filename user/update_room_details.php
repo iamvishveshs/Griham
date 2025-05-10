@@ -1,6 +1,5 @@
 <?php
 require("./check.php");
-
 // Fetch accommodation details if accommodation_id is provided
 $user_id = intval($_SESSION['user_id']);
 $roomDetails = [];
@@ -9,11 +8,9 @@ if (isset($user_id) && is_numeric($user_id)) {
             JOIN addresses a ON ra.address_id = a.address_id
              WHERE ra.user_id = $user_id";
     $result = mysqli_query($conn, $sql);
-
     if ($result && mysqli_num_rows($result) > 0) {
         $roomDetails = mysqli_fetch_assoc($result);
         $accommodation_id = $roomDetails['accommodation_id'];
-
         // Fetch amenities for this accommodation
         $amenitiesSql = "SELECT a.amenity_id, a.amenity_name FROM roommate_accommodation_amenities raa
                          JOIN amenities a ON raa.amenity_id = a.amenity_id
@@ -25,7 +22,6 @@ if (isset($user_id) && is_numeric($user_id)) {
                 $roomAmenities[] = $amenity;
             }
         }
-
         // Fetch images for this accommodation
         $imagesSql = "SELECT image_url FROM images WHERE entity_type = 'roommate_accommodation' AND entity_id = $accommodation_id";
         $imagesResult = mysqli_query($conn, $imagesSql);
@@ -46,12 +42,10 @@ if (isset($user_id) && is_numeric($user_id)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room & Stay Details </title>
-
     <?php require("./style-files.php"); ?>
     <link rel="stylesheet" href="../assets/css/form.css">
     <style>
@@ -61,13 +55,11 @@ if (isset($user_id) && is_numeric($user_id)) {
             gap: 5px;
             margin-top: 5px;
         }
-
         .pill-container>* {
             width: fit-content;
             max-width: fit-content;
             min-width: fit-content;
         }
-
         .pill {
             background-color: #007bff;
             width: fit-content !important;
@@ -77,25 +69,21 @@ if (isset($user_id) && is_numeric($user_id)) {
             display: flex;
             align-items: center;
         }
-
         .pill .remove-pill {
             margin-left: 8px;
             cursor: pointer;
             font-weight: bold;
         }
-
         .preview-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
         }
-
         .image-item {
             position: relative;
             display: inline-block;
         }
-
         .preview-image {
             width: 100px;
             height: 100px;
@@ -103,7 +91,6 @@ if (isset($user_id) && is_numeric($user_id)) {
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             object-fit: cover;
         }
-
         .remove-image {
             position: absolute;
             top: -5px;
@@ -123,18 +110,13 @@ if (isset($user_id) && is_numeric($user_id)) {
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
     <?php require("./navbar.php"); ?>
     <div style="text-align: center;margin-top:20px">
         <h2> Update your Room Details</h2>
         <p>So that users can contact you</p>
     </div>
-
     <?php require("./show-message.php"); ?>
-
-
-
     <form action="./update_room_details_process.php" method="POST" id="myForm" class="form-container" enctype="multipart/form-data">
         <input type="hidden" name="accommodation_id" value="<?php echo htmlspecialchars($roomDetails['accommodation_id'] ?? ''); ?>">
         <h3>Your Current Living Space </h3>
@@ -195,7 +177,6 @@ if (isset($user_id) && is_numeric($user_id)) {
                 </select>
             </div>
         </div>
-
         <h3>Lifestyle Preferences</h3>
         <div class="form-group">
             <div>
@@ -271,32 +252,26 @@ if (isset($user_id) && is_numeric($user_id)) {
                 <input type="text" id="searchAddress" placeholder="Type to City search..." autocomplete="off" value="<?php echo htmlspecialchars($roomDetails['city'] . ', ' . $roomDetails['village'] . ', ' . $roomDetails['po'] . ', ' . $roomDetails['tehsil'] . ', ' . $roomDetails['district'] . ', ' . $roomDetails['state'] . ', ' . $roomDetails['pincode']); ?>">
                 <div id="addressSuggestions" class="suggestion-box"></div>
             </div>
-
             <div>
                 <label>City</label>
                 <input type="text" name="city" id="city" pattern="^[a-zA-Z\s]+$" title="Only letters and spaces allowed" required value="<?php echo htmlspecialchars($roomDetails['city'] ?? ''); ?>">
             </div>
-
             <div>
                 <label>Village</label>
                 <input type="text" name="village" id="village" required value="<?php echo htmlspecialchars($roomDetails['village'] ?? ''); ?>">
             </div>
-
             <div>
                 <label>Post Office (PO)</label>
                 <input type="text" name="po" id="po" required value="<?php echo htmlspecialchars($roomDetails['po'] ?? ''); ?>">
             </div>
-
             <div>
                 <label>Tehsil</label>
                 <input type="text" name="tehsil" id="tehsil" required value="<?php echo htmlspecialchars($roomDetails['tehsil'] ?? ''); ?>">
             </div>
-
             <div>
                 <label>District</label>
                 <input type="text" name="district" id="district" required value="<?php echo htmlspecialchars($roomDetails['district'] ?? ''); ?>">
             </div>
-
             <div>
                 <label>State</label>
                 <select name="state" id="state" required>
@@ -343,15 +318,12 @@ if (isset($user_id) && is_numeric($user_id)) {
                     </optgroup>
                 </select>
             </div>
-
             <div>
                 <label>Pincode</label>
                 <input type="text" name="pincode" id="pincode" pattern="^\d{6}$" title="Enter a valid 6-digit pincode" required value="<?php echo htmlspecialchars($roomDetails['pincode'] ?? ''); ?>">
             </div>
-
             <input type="hidden" name="address_id" id="address_id" value="<?php echo htmlspecialchars($roomDetails['address_id'] ?? ''); ?>">
         </div>
-
         <div class="form-group">
             <div>
                 <label class="custum-file-upload" for="imageUpload">
@@ -384,40 +356,31 @@ if (isset($user_id) && is_numeric($user_id)) {
         <div class="form-group">
             <div>
                 <textarea id="description" name="description"  autocomplete="off">I am looking for a roommate for my room.</textarea>
-
             </div>
         </div>
     </form>
-
     <?php require("./footer.php"); ?>
     <?php require("./script-files.php"); ?>
-
     <script>
         // ... (your JavaScript code remains the same) ...
         document.getElementById("imageUpload").addEventListener("change", function(event) {
             let previewContainer = document.getElementById("imagePreview");
-
             let files = Array.from(event.target.files);
-
             files.forEach(file => {
                 if (!file.type.match("image.*")) return; // Skip non-image files
-
                 let reader = new FileReader();
                 reader.onload = function(e) {
                     let imgContainer = document.createElement("div");
                     imgContainer.classList.add("image-item");
-
                     let imgElement = document.createElement("img");
                     imgElement.src = e.target.result;
                     imgElement.classList.add("preview-image");
-
                     let removeBtn = document.createElement("span");
                     removeBtn.innerHTML = "&times;";
                     removeBtn.classList.add("remove-image");
                     removeBtn.addEventListener("click", function() {
                         previewContainer.removeChild(imgContainer);
                     });
-
                     imgContainer.appendChild(imgElement);
                     imgContainer.appendChild(removeBtn);
                     previewContainer.appendChild(imgContainer);
@@ -427,7 +390,6 @@ if (isset($user_id) && is_numeric($user_id)) {
         });
         $(document).ready(function() {
             let selectedAmenities = [];
-
             // Load existing amenities into selectedAmenities
             $("#amenitiesList .pill").each(function() {
                 selectedAmenities.push({
@@ -435,9 +397,7 @@ if (isset($user_id) && is_numeric($user_id)) {
                     amenity_name: $(this).text().trim().replace("×", "") // Remove the close button text
                 });
             });
-
             updateHiddenInput(); // Ensure hidden input is updated on page load
-
             // Search Amenities
             $("#amenityInput").on("input", function() {
                 let query = $(this).val().trim();
@@ -470,18 +430,15 @@ if (isset($user_id) && is_numeric($user_id)) {
                     $("#suggestions").hide();
                 }
             });
-
             // Select an Amenity
             $(document).on("click", ".suggestion-item", function() {
                 let amenityId = $(this).data("id");
                 let amenityName = $(this).data("name");
-
                 if (!selectedAmenities.some(item => item.amenity_id === amenityId)) {
                     selectedAmenities.push({
                         amenity_id: amenityId,
                         amenity_name: amenityName
                     });
-
                     $("#amenitiesList").append(`
                         <div class="pill" data-id="${amenityId}">
                             ${amenityName} <span class="remove-pill">&times;</span>
@@ -489,21 +446,17 @@ if (isset($user_id) && is_numeric($user_id)) {
                     `);
                     updateHiddenInput();
                 }
-
                 $("#suggestions").hide();
                 $("#amenityInput").val("");
             });
-
             // Remove an Amenity
             $(document).on("click", ".remove-pill", function() {
                 let pill = $(this).parent();
                 let amenityId = pill.data("id");
-
                 selectedAmenities = selectedAmenities.filter(item => item.amenity_id !== amenityId);
                 pill.remove();
                 updateHiddenInput();
             });
-
             // Update Hidden Input with Selected Amenity IDs
             function updateHiddenInput() {
                 let ids = selectedAmenities.map(item => item.amenity_id);
@@ -517,7 +470,6 @@ if (isset($user_id) && is_numeric($user_id)) {
                     $("#addressSuggestions").html("");
                     return;
                 }
-
                 $.ajax({
                     url: "fetch_address.php",
                     method: "POST",
@@ -529,7 +481,6 @@ if (isset($user_id) && is_numeric($user_id)) {
                     }
                 });
             });
-
             // Select an address from suggestions
             $(document).on("click", ".address-suggestion-item", function() {
                 let data = $(this).data();
@@ -542,7 +493,6 @@ if (isset($user_id) && is_numeric($user_id)) {
                 $("#state").val(data.state);
                 $("#pincode").val(data.pincode);
                 $("#address_id").val(data.addressId);
-
                 $("#addressSuggestions").html(""); // Clear suggestions
             });
         });
@@ -553,7 +503,6 @@ if (isset($user_id) && is_numeric($user_id)) {
         $(document).on("click", ".remove-image", function() {
             let imageItem = $(this).parent();
             let imageName = imageItem.data("image-name");
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -613,29 +562,24 @@ if (isset($user_id) && is_numeric($user_id)) {
             let form = document.querySelector(".form-container");
             let originalValues = {};
             let saveButton = null;
-
             // Store initial values of all input and select fields
             form.querySelectorAll("input, select").forEach(field => {
                 originalValues[field.name] = field.value;
             });
-
             function checkForChanges() {
                 let hasChanges = false;
-
                 // Compare current values with the original ones
                 form.querySelectorAll("input, select").forEach(field => {
                     if (originalValues[field.name] !== field.value) {
                         hasChanges = true;
                     }
                 });
-
                 if (hasChanges) {
                     addSaveButton();
                 } else {
                     removeSaveButton();
                 }
             }
-
             function addSaveButton() {
                 if (!saveButton) {
                     saveButton = document.createElement("button");
@@ -645,14 +589,12 @@ if (isset($user_id) && is_numeric($user_id)) {
                     form.appendChild(saveButton);
                 }
             }
-
             function removeSaveButton() {
                 if (saveButton) {
                     saveButton.remove();
                     saveButton = null;
                 }
             }
-
             // Listen for changes on input and select fields
             form.querySelectorAll("input, select").forEach(field => {
                 field.addEventListener("input", checkForChanges);
@@ -661,5 +603,4 @@ if (isset($user_id) && is_numeric($user_id)) {
         });
     </script>
 </body>
-
 </html>

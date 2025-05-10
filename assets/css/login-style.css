@@ -1,352 +1,313 @@
-/* Form Section */
-.form-section {
-  padding: 40px 0;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--theme-bg-color);
-  flex-direction: column;
-}
-
-/* Form Heading */
-.form-heading {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
-  text-align: center;
-}
-
-/* Form Container */
-.form {
-  max-width: 600px;
-  width: 100%;
-  padding: 0 20px;
-  margin: 0 auto;
-}
-
-.input-box {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.input-box label {
-  color: #333;
-}
-
-/* Input Fields */
-.form :where(.input-box input, .input-box textarea) {
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  color: #707070;
-  margin-top: 8px;
-  border: var(--theme-border);
-  border-radius: var(--theme-border-radius);
-  padding: 0 15px;
-  transition: var(--theme-transition);
-}
-.select-box {
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  color: #707070;
-  border: var(--theme-border);
-  border-radius: var(--theme-border-radius);
-  transition: var(--theme-transition);
-}
-.input-box input:focus,
-.form textarea:focus {
-  border-color: var(--theme-color);
-}
-
-.form textarea {
-  resize: vertical;
-}
-
-/* Column Layout */
-.form .column {
-  display: flex;
-  gap: 15px;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-
-/* Gender Box */
-.gender-box {
-  margin-top: 20px;
-}
-
-.gender-box h3 {
-  color: #333;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-
-.gender-option,
-.gender {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.gender input {
-  accent-color: var(--theme-color);
-}
-
-.gender label {
-  color: #707070;
-  cursor: pointer;
-}
-
-/* Address Input Fields */
-.address :where(input, .select-box) {
-  margin-top: 15px;
-}
-
-.select-box select {
-  width: 100%;
-  height: 100%;
-  outline: none;
-  border: none;
-  color: #707070;
-  font-size: 1rem;
-}
-
-/* Submit Button */
-.form button {
-  height: 55px;
-  width: 100%;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-top: 30px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: var(--theme-color);
-}
-
-.form button:hover {
-  background: var(--theme-hover-color);
-}
-
-/* Login Option */
-.form .login-option {
-  font-size: 0.9rem;
-  text-align: center;
-  padding: 10px 0;
-}
-
-.form .login-option a {
-  color: var(--theme-color);
-  text-decoration: none;
-}
-
-.form .login-option a:hover {
-  color: var(--theme-hover-color);
-}
-
-/* Error & Success Messages */
-.info-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.info-container .error {
-  width: fit-content;
-  background: #fef2f2;
-  border: 1px solid #fee2e2;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  color: var(--error);
-  font-family: monospace;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-.info-container .success {
-  width: fit-content;
-  background: rgb(165, 235, 196);
-  border: 1px solid rgb(124, 219, 167);
-  border-radius: 12px;
-  padding: 0.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--success);
-  font-family: monospace;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-/* Password Toggle */
-.relative-div {
-  position: relative;
-}
-
-.right-top-btn {
-  position: absolute;
-  right: 5px;
-  transform: translateY(-100%);
-  color: var(--theme-color);
-  background-color: #fff;
-  padding: 2px 10px;
-  cursor: pointer;
-  border-radius: 20px;
-  font-size: 0.8rem;
-}
-
-/* Amenities Container */
-.amenities-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-bottom: 8px;
-  border-radius: 5px;
-  position: relative;
-  overflow-x: auto;
-  max-width: 100%;
-  overflow: visible !important;
-}
-
-/* Pill Container */
-.pill-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  max-width: 100%;
-  overflow: hidden;
-  flex-shrink: 1;
-}
-
-.amenity-pill {
-  background: #007bff;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 15px;
-  display: inline-flex;
-  align-items: center;
-  font-size: 14px;
-  white-space: nowrap;
-  max-width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.amenity-pill .remove-pill {
-  margin-left: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-}
-
-/* Suggestion Box */
-#suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  max-height: 150px;
-  overflow-y: scroll;
-  z-index: 1000; /* ✅ Ensures it appears above everything */
-  display: none;
-}
-.suggestion-item,.address-suggestion-item {
-  padding: 10px;
-  cursor: pointer;
-  background-color: white;
-  border-bottom: 1px solid gray;
-}
-.suggestion-item:hover,.address-suggestion-item:hover {
-  background: #f0f0f0;
-}
-
-/* Quick Options */
-.quick-options {
-  margin: 10px 0 20px 0;
-  display: inline-flex;
-  gap: 0.5rem;
-}
-
-.quick-btn {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 2px 10px;
-  margin: 5px;
-  border-radius: 5px;
-  font-size: 0.7rem;
-  cursor: pointer;
-}
-
-.quick-btn:hover {
-  background: #218838;
-}
-
-/* Responsive */
-@media screen and (max-width: 500px) {
-  .form .column {
-    flex-wrap: wrap;
-  }
-
-  .gender-option,
-  .gender {
-    row-gap: 15px;
-  }
-}
-
-/* From Uiverse.io by Yaya12085 */
-.custum-file-upload {
-  height: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  gap: 10px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #cacaca;
-  background-color: rgba(255, 255, 255, 1);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
-}
-
-.custum-file-upload .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.custum-file-upload .icon svg {
-  height: 30px;
-  fill: rgba(75, 85, 99, 1);
-}
-
-.custum-file-upload .text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.custum-file-upload .text span {
-  font-weight: 400;
-  color: rgba(75, 85, 99, 1);
-}
-
-.custum-file-upload input {
-  display: none;
-}
+/* Form Section */
+.form-section {
+  padding: 40px 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-bg-color);
+  flex-direction: column;
+}
+/* Form Heading */
+.form-heading {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+/* Form Container */
+.form {
+  max-width: 600px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.input-box label {
+  color: #333;
+}
+/* Input Fields */
+.form :where(.input-box input, .input-box textarea) {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: var(--theme-border);
+  border-radius: var(--theme-border-radius);
+  padding: 0 15px;
+  transition: var(--theme-transition);
+}
+.select-box {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  border: var(--theme-border);
+  border-radius: var(--theme-border-radius);
+  transition: var(--theme-transition);
+}
+.input-box input:focus,
+.form textarea:focus {
+  border-color: var(--theme-color);
+}
+.form textarea {
+  resize: vertical;
+}
+/* Column Layout */
+.form .column {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+/* Gender Box */
+.gender-box {
+  margin-top: 20px;
+}
+.gender-box h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.gender-option,
+.gender {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.gender input {
+  accent-color: var(--theme-color);
+}
+.gender label {
+  color: #707070;
+  cursor: pointer;
+}
+/* Address Input Fields */
+.address :where(input, .select-box) {
+  margin-top: 15px;
+}
+.select-box select {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+}
+/* Submit Button */
+.form button {
+  height: 55px;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--theme-color);
+}
+.form button:hover {
+  background: var(--theme-hover-color);
+}
+/* Login Option */
+.form .login-option {
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px 0;
+}
+.form .login-option a {
+  color: var(--theme-color);
+  text-decoration: none;
+}
+.form .login-option a:hover {
+  color: var(--theme-hover-color);
+}
+/* Error & Success Messages */
+.info-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-container .error {
+  width: fit-content;
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--error);
+  font-family: monospace;
+  font-size: 0.875rem;
+  text-align: center;
+}
+.info-container .success {
+  width: fit-content;
+  background: rgb(165, 235, 196);
+  border: 1px solid rgb(124, 219, 167);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--success);
+  font-family: monospace;
+  font-size: 0.875rem;
+  text-align: center;
+}
+/* Password Toggle */
+.relative-div {
+  position: relative;
+}
+.right-top-btn {
+  position: absolute;
+  right: 5px;
+  transform: translateY(-100%);
+  color: var(--theme-color);
+  background-color: #fff;
+  padding: 2px 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+/* Amenities Container */
+.amenities-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  position: relative;
+  overflow-x: auto;
+  max-width: 100%;
+  overflow: visible !important;
+}
+/* Pill Container */
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 1;
+}
+.amenity-pill {
+  background: #007bff;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 15px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.amenity-pill .remove-pill {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+/* Suggestion Box */
+#suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-height: 150px;
+  overflow-y: scroll;
+  z-index: 1000; /* Ensures it appears above everything */
+  display: none;
+}
+.suggestion-item,.address-suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+  border-bottom: 1px solid gray;
+}
+.suggestion-item:hover,.address-suggestion-item:hover {
+  background: #f0f0f0;
+}
+/* Quick Options */
+.quick-options {
+  margin: 10px 0 20px 0;
+  display: inline-flex;
+  gap: 0.5rem;
+}
+.quick-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 2px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+.quick-btn:hover {
+  background: #218838;
+}
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .gender-option,
+  .gender {
+    row-gap: 15px;
+  }
+}
+/* From Uiverse.io by Yaya12085 */
+.custum-file-upload {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cacaca;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+}
+.custum-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custum-file-upload .icon svg {
+  height: 30px;
+  fill: rgba(75, 85, 99, 1);
+}
+.custum-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custum-file-upload .text span {
+  font-weight: 400;
+  color: rgba(75, 85, 99, 1);
+}
+.custum-file-upload input {
+  display: none;
+}

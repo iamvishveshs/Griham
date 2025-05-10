@@ -1,10 +1,9 @@
-<?php
-session_start();
-
-require("database.php");
-/*Checking if there is any user session if no then redirected to login page*/
-if(!isset($_SESSION["user_id"]) || $_SESSION['role']!="admin")
-{
-    header("Location:../login.php");
-}
+<?php
+session_start();
+require("database.php");
+/*Checking if there is any user session if no then redirected to login page*/
+if(!isset($_SESSION["user_id"]) || $_SESSION['role']!="admin")
+{
+    header("Location:../login.php");
+}
 ?>

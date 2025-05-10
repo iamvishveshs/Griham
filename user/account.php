@@ -1,6 +1,5 @@
 <?php
 require("./check.php");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize input data to prevent SQL injection
     function clean_input($data, $conn)
@@ -10,54 +9,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = ucwords($data); // Capitalize first letter of each word
         return mysqli_real_escape_string($conn, htmlspecialchars($data));
     }
-
-
     try {
-
-
         // Personal Details
         $user_id = $_SESSION['user_id'];
-
         // Image Upload Directory
         $upload_dir = "../assets/uploads/profile/";
         if (!file_exists($upload_dir)) {
             mkdir($upload_dir, 0777, true);
         }
-
         $main_image_path = null; // Store new image name if uploaded
         $image_update_query = ""; // To store dynamic SQL update
         $old_image_path = null; // Store previous image path
-
         // Fetch the old profile picture filename before updating
         $query = "SELECT profile_pic FROM users WHERE user_id = '$user_id'";
         $result = mysqli_query($conn, $query);
         if ($row = mysqli_fetch_assoc($result)) {
             $old_image_path = $row['profile_pic']; // Store old image filename
         }
-
         if (isset($_FILES['main_image']['name']) && !empty($_FILES['main_image']['name'])) {
             if ($_FILES['main_image']['error'] === 0) {  // Check if file uploaded successfully
                 $main_image_name = basename($_FILES['main_image']['name']);
                 $main_image_ext = strtolower(pathinfo($main_image_name, PATHINFO_EXTENSION));
-
                 if (in_array($main_image_ext, ["jpg", "jpeg", "png", "gif", "webp"])) {
                     $new_main_filename = "main_" . uniqid() . "." . $main_image_ext;
                     $main_image_path = $upload_dir . $new_main_filename;
-
                     if (move_uploaded_file($_FILES['main_image']['tmp_name'], $main_image_path)) {
                         $main_image_path = $new_main_filename; // Store only filename in DB
                         $image_update_query = "UPDATE `users` SET `profile_pic`='$main_image_path' WHERE user_id='$user_id'"; // SQL update string
                         if (mysqli_query($conn, $image_update_query)) {
                             if ($old_image_path && file_exists($upload_dir . $old_image_path)) {
                                 unlink($upload_dir . $old_image_path);
-                                
+
                             }
                             $_SESSION['success'] = "Details saved successfully!";
                             header("Location: ./account.php");
                             exit();
                         }
-                        // ✅ Delete old image if it exists
-                        
+                        // Delete old image if it exists
+
                     } else {
                         throw new Exception("Error in Image Upload");
                     }
@@ -74,19 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
 // Get user_id from session
 $user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
-
-
-
 if ($user_id > 0) {
     // Fetch personal details
     $query = "SELECT * from users WHERE user_id = '$user_id'";
     $result = mysqli_query($conn, $query);
     if ($row = mysqli_fetch_assoc($result)) {
         $full_name = $row['name'] ?? "";
-
         $email = $row['email'] ?? "";
         $phone = $row['phone'] ?? "";
         $_SESSION['nav_profile_pic'] = $row['profile_pic'] ?? "";
@@ -96,13 +80,10 @@ mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Details</title>
-
     <?php
     require("./style-files.php");
     ?>
@@ -116,14 +97,11 @@ mysqli_close($conn);
         }
     </style>
 </head>
-
 <body>
     <?php require("./navbar.php"); ?>
-
     <h2 style="text-align: center;margin-top:20px">Account Details</h2>
     <?php require("./show-message.php") ?>
     <form action="./account.php" method="POST" class="form-container" enctype="multipart/form-data">
-
         <div class="form-group" style="min-width:100%;display:flex;justify-content:center;align-items:center;flex-direction:column;">
             <div style="max-width: 250px;text-align:center;" id="imagePreviewMain" class="preview-container">
                 <?php
@@ -150,24 +128,17 @@ mysqli_close($conn);
                     <div class="text">
                         <span>Your Photograph</span>
                     </div>
-
                     <input type="file" id="imageUploadMain" name="main_image"
                         accept="image/png, image/jpeg,image/webp, image/gif">
                 </label>
-
             </div>
-
-
         </div>
-
-
         <h3>Personal Details</h3>
         <div class="form-group">
             <div>
                 <label>Full Name</label>
                 <input type="text" name="full_name" value="<?php echo htmlspecialchars($full_name); ?>" placeholder="Enter full name" disabled>
             </div>
-
             <div>
                 <label>Email</label>
                 <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="Enter your email" disabled>
@@ -176,36 +147,27 @@ mysqli_close($conn);
                 <label>Mobile Number</label>
                 <input type="text" name="phone" value="<?php echo htmlspecialchars($phone); ?>" placeholder="Enter mobile number" disabled>
             </div>
-
-
         </div>
-
 <h3>Bio</h3>
             <section>
                 <div class="details">
                     <?php echo $row['bio']; ?>
                 </div>
             </section>
-
     </form>
-
-
     <?php require("./footer.php"); ?>
     <script>
         document.getElementById("imageUploadMain").addEventListener("change", function(event) {
             let previewContainer = document.getElementById("imagePreviewMain");
             previewContainer.innerHTML = ""; // Clear previous previews
-
             let files = event.target.files;
             if (files.length > 0) {
                 for (let i = 0; i < files.length; i++) {
                     let file = files[i];
                     let fileType = file.type;
-
                     // Check if file is a valid image type
                     if (fileType.match("image.*")) {
                         let reader = new FileReader();
-
                         reader.onload = function(e) {
                             let imgElement = document.createElement("img");
                             imgElement.src = e.target.result;
@@ -227,29 +189,24 @@ mysqli_close($conn);
             let form = document.querySelector(".form-container");
             let originalValues = {};
             let saveButton = null;
-
             // Store initial values of all input and select fields
             form.querySelectorAll("input, select").forEach(field => {
                 originalValues[field.name] = field.value;
             });
-
             function checkForChanges() {
                 let hasChanges = false;
-
                 // Compare current values with the original ones
                 form.querySelectorAll("input, select").forEach(field => {
                     if (originalValues[field.name] !== field.value) {
                         hasChanges = true;
                     }
                 });
-
                 if (hasChanges) {
                     addSaveButton();
                 } else {
                     removeSaveButton();
                 }
             }
-
             function addSaveButton() {
                 if (!saveButton) {
                     saveButton = document.createElement("button");
@@ -259,14 +216,12 @@ mysqli_close($conn);
                     form.appendChild(saveButton);
                 }
             }
-
             function removeSaveButton() {
                 if (saveButton) {
                     saveButton.remove();
                     saveButton = null;
                 }
             }
-
             // Listen for changes on input and select fields
             form.querySelectorAll("input, select").forEach(field => {
                 field.addEventListener("input", checkForChanges);
@@ -274,10 +229,8 @@ mysqli_close($conn);
             });
         });
     </script>
-
     <?php
     require("./script-files.php");
     ?>
 </body>
-
 </html>
