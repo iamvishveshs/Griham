@@ -1,0 +1,8 @@
+ErrorDocument 400 https://griham.thevshub.in/bad-request.php
+ErrorDocument 401 https://griham.thevshub.in/unauthorized-request.php
+ErrorDocument 403 https://griham.thevshub.in/forbidden-request.php
+ErrorDocument 404 https://griham.thevshub.in/error-not-found.php
+ErrorDocument 503 https://griham.thevshub.in/service-unavailable.php
+php_value display_errors Off
+php_value mbstring.http_input auto
+php_value date.timezone Asia/Calcutta

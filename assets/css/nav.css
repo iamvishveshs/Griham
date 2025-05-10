@@ -1,0 +1,618 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css");
+:root {
+  /* Backgrounds */
+  --theme-bg-color: #f4f7fc; /* Light Blueish Background */
+  --theme-secondary-bg: #e8eef6; /* Softer Secondary Background */
+  --error: #ef4444;
+  --success: rgb(39, 128, 79);
+  /* Text Colors */
+  --theme-text-color: #222; /* Slightly Darker for Better Contrast */
+  --theme-secondary-color: #555; /* More Readable Grey */
+
+  /* Primary Colors */
+  --theme-color: #0056d2; /* Main Blue */
+  --theme-accent-color: #ff8000; /* Orange Accent */
+  --theme-color-dark: #003d99;
+
+  /* Hover & Interaction */
+  --theme-hover-color: #003d99; /* Deeper Blue for Hover Effects */
+  --theme-accent-hover: #cc6600; /* Slightly Darker Orange */
+
+  /* Borders & Radius */
+  --theme-border: 1.5px solid rgba(150, 150, 150, 0.3); /* Soft, Subtle Borders */
+  --theme-border-radius: 6px; /* Slightly More Rounded */
+
+  /* Box Shadow for Depth */
+  --theme-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Soft, Modern Shadow */
+
+  /* Transitions */
+  --theme-transition: all 0.3s ease-in-out; /* Slightly Smoother */
+  --text-color: #333;
+  --light-bg: #f8f9fa;
+  --white: #ffffff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 5%;
+  background-color: var(--theme-color);
+  box-shadow: var(--shadow);
+  color:white;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  flex: 1;
+} 
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 3;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  color:white;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-label {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  color: white;
+  padding:0;
+}
+
+.dropdown-label:hover {
+  color: white;
+}
+
+.dropdown-label .icon-nav {
+  margin-left: 5px;
+  font-size: 0.9rem;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background-color: var(--theme-color);
+  color:white;
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color:white;
+  transition: var(--transition);
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(11, 72, 133);
+  color: var(--primary-color);
+}
+
+/* Auth buttons container */
+.auth-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+
+/* Sign up button */
+.login-btn {
+  background-color: white;
+  color: var(--theme-color);
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.login-btn:hover {
+  background-color: rgb(201, 201, 201);
+  transform: translateY(-2px);
+}
+
+/* Mobile menu toggle */
+#menu-toggle,.close-menu {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Mobile auth container (hidden on desktop) */
+.mobile-auth {
+  display: none;
+}
+
+/* Dropdown toggle for mobile */
+.dropdown-toggle {
+  display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 1.1rem;
+  }
+
+  .logo {
+    flex: 1;
+  }
+
+  /* Hide the desktop auth container on small screens */
+  .auth-container {
+    display: none;
+  }
+
+  .nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 4rem;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 90;
+    overflow-y: auto;
+    background-color: var(--theme-color);
+  }
+
+  #menu-toggle:checked ~ .nav-container {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  /* Make dropdowns work on mobile */
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-label {
+    padding: 1rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    justify-content: center;
+    position: relative;
+  }
+
+  .dropdown-toggle {
+    display: none;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .dropdown-toggle:checked + .dropdown-label .icon-nav {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-toggle:checked ~ .dropdown-content {
+    display: block;
+    max-height: 500px;
+  }
+
+  .dropdown-content {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  /* Style the dropdown content */
+  .dropdown-content a {
+    padding: 0.8rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    font-size:1rem;
+  }
+
+  /* Icon positioning */
+  .dropdown-label .icon-nav{
+    position: absolute;
+    right: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  /* Show the mobile auth container when menu opens */
+  .mobile-auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  /* Make buttons take full width in mobile menu */
+  .mobile-auth button {
+    width: 90%;
+  }
+
+  /* Close button for mobile menu */
+  .close-menu {
+    display:block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.profile-dropdown {
+  position: relative;
+  font-weight: bold;
+  width: fit-content;
+  font-size: 1.3rem;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+.profile-dropdown * {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+.profile-dropdown input[type="checkbox"] {
+  display: none;
+  cursor: pointer;
+}
+.profile-dropdown:hover {
+  cursor: pointer;
+}
+.profile-dropdown input[type="checkbox"]:checked ~ ul {
+  
+  z-index: 1000;
+  display: block;
+  animation: pulse 0.5s;
+}
+.profile-dropdown input[type="checkbox"]:checked ~ label i {
+  color: var(--theme-color);
+}
+.profile-dropdown input[type="checkbox"]:checked ~ label:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: calc(50% - 10px);
+  display: block;
+  border-style: solid;
+  border-width: 7px 10px 0 10px;
+  border-color: var(--theme-color);
+  width: 0;
+  height: 0;
+  
+}
+.profile-dropdown img {
+  display: inline-block;
+  background: #d9d9d9;
+  height: 3rem;
+  width: 3rem;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.profile-dropdown span {
+  display: inline-block;
+  vertical-align: sub;
+  width: 125px;
+  margin-right: 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.profile-dropdown ul {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--theme-color);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  border-radius: 3px;
+  border-top: 1px solid #fff;
+}
+.profile-dropdown ul li p {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+}
+.profile-dropdown ul li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.profile-dropdown ul li a i {
+  font-size: 1.3rem;
+  vertical-align: middle;
+  margin: 0 0.75rem 0 -0.25rem;
+}
+.profile-dropdown ul li a:hover {
+  background: var(--theme-hover-color);
+}
+.profile-dropdown ul li:first-child a:hover {
+  border-radius: 3px 3px 0 0;
+}
+.profile-dropdown ul li:last-child a:hover {
+  border-radius: 0 0 3px 3px;
+}
+.profile-dropdown > label {
+  position: relative;
+  height: 3.5rem;
+  display: block;
+  text-decoration: none;
+  background: transparent;
+  color: #333;
+  box-sizing: border-box;
+  padding: 0.9rem;
+  float: right;
+  border-radius: 0 3px 3px 0;
+}
+.profile-dropdown > label i {
+  color: #b2b2b2;
+  font-size: 1.75rem;
+}
+.profile-dropdown:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* FOOTER Section Styling BEGINS */
+
+/* Footer Container */
+.footer {
+  background: #001f3f;
+  padding: 50px 0 20px;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* Footer Row */
+.footer-row {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Footer Columns */
+.footer-col {
+  width: 22%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #ff8000;
+  position: relative;
+}
+
+/* Add an underline effect */
+.footer-col h4::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: #ff8000;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+
+/* Footer Links */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.footer-col ul li a:hover {
+  color: #ff8000;
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: #ff8000;
+  color: #001f3f;
+}
+
+/* Copyright Section */
+.copyright {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #bbb;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .footer-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+/* FOOTER Section Styling ENDS */
