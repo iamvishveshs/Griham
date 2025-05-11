@@ -139,7 +139,7 @@ change these files to run the website smoothly
 | Name                                                   | Role                   | Profile                                             |
 | ------------------------------------------------------ | ---------------------- | --------------------------------------------------- |
 | [Vishvesh Shivam](https://github.com/iamvishveshs)      | Full Stack | [LinkedIn](www.linkedin.com/in/iamvishveshs)           |
-| [Akshay Kumar](https://github.com/ak-11bhardwaj) | Full Stack    | [LinkedIn](https://www.linkedin.com/in/) |
+| [Akshay Kumar](https://github.com/ak-11bhardwaj) | Full Stack    | [LinkedIn](https://www.linkedin.com/in/akshaykumar0405) |
 | [Aayush Chauhan](#)        | Frontend      | [-](#)          |
 | [Ayush Sharma](https://github.com/Ayusharma24)   | Frontend    | [LinkedIn](https://www.linkedin.com/in/ayush-sharma-student)  |
 | [Srishti Sharma](https://github.com/SrishtiSharma645)   | Frontend    | [LinkedIn](https://www.linkedin.com/in/srishti-sharma-1593452b2)  |
