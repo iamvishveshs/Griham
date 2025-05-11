@@ -135,7 +135,7 @@ change these files to run the website smoothly
 `https://myaccount.google.com/apppasswords` 
 
 
-## Deveopment Team 
+## Development Team 
 | Name                                                   | Role                   | Profile                                             |
 | ------------------------------------------------------ | ---------------------- | --------------------------------------------------- |
 | [Vishvesh Shivam](https://github.com/iamvishveshs)      | Full Stack | [LinkedIn](https://www.linkedin.com/in/iamvishveshs)           |
