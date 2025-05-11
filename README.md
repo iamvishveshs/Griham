@@ -138,7 +138,7 @@ change these files to run the website smoothly
 ## Deveopment Team 
 | Name                                                   | Role                   | Profile                                             |
 | ------------------------------------------------------ | ---------------------- | --------------------------------------------------- |
-| [Vishvesh Shivam](https://github.com/iamvishveshs)      | Full Stack | [LinkedIn](www.linkedin.com/in/iamvishveshs)           |
+| [Vishvesh Shivam](https://github.com/iamvishveshs)      | Full Stack | [LinkedIn](https://www.linkedin.com/in/iamvishveshs)           |
 | [Akshay Kumar](https://github.com/ak-11bhardwaj) | Full Stack    | [LinkedIn](https://www.linkedin.com/in/akshaykumar0405) |
 | [Aayush Chauhan](#)        | Frontend      | [-](#)          |
 | [Ayush Sharma](https://github.com/Ayusharma24)   | Frontend    | [LinkedIn](https://www.linkedin.com/in/ayush-sharma-student)  |
